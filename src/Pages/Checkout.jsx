@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 export const Checkout = ()=>{
 
 
@@ -14,6 +15,8 @@ export const Checkout = ()=>{
         <>
 
         <title>Cart </title>
+
+        
         
     <div className="checkout-header">
       <div className="header-content">
