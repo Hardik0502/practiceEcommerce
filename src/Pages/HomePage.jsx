@@ -3,6 +3,7 @@ import '../Pages/header.css' ;
 import '../Pages/HomePage.css' ;
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
+import { products } from "../../data/products";
 
 
 export const HomePage = ()=>{
@@ -18,26 +19,28 @@ export const HomePage = ()=>{
 
     <div className="home-page">
       <div className="products-grid">
-        <div className="product-container">
+
+      { products.map((product)=>{
+        return <div key={product.id} className="product-container">
           <div className="product-image-container">
             <img className="product-image"
-              src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+              src={product.image} />
           </div>
 
           <div className="product-name limit-text-to-2-lines">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
+            {product.name}
           </div>
 
           <div className="product-rating-container">
             <img className="product-rating-stars"
-              src="images/ratings/rating-45.png" />
+              src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
             <div className="product-rating-count link-primary">
-              87
+              {product.rating.count}
             </div>
           </div>
 
           <div className="product-price">
-            $10.90
+            $ {(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div className="product-quantity-container">
@@ -66,8 +69,11 @@ export const HomePage = ()=>{
             Add to Cart
           </button>
         </div>
+      }) }
 
-        <div className="product-container">
+        
+
+        {/* <div className="product-container">
           <div className="product-image-container">
             <img className="product-image"
               src="images/products/intermediate-composite-basketball.jpg" />
@@ -163,7 +169,7 @@ export const HomePage = ()=>{
           <button className="add-to-cart-button button-primary">
             Add to Cart
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
         
