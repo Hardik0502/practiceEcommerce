@@ -43,11 +43,11 @@ export const HomePage = ()=>{
     })
 
     // similarly let's do it for the carts. Note : the name after 3000 can get from the documentation of SuperSimpleDev's react course.
-      axios.get('http://localhost:3000/api/cart-items')
-      .then((response)=>{
-//      console.log(response.data); //We get the product with it's information like productId,quantity etc
-          setcart(response.data);
-      })   // carts number or section is in Header page so we can use props to give this value to the cart item.
+//       axios.get('http://localhost:3000/api/cart-items')
+//       .then((response)=>{
+// //      console.log(response.data); //We get the product with it's information like productId,quantity etc
+//           setcart(response.data);
+//       })   // carts number or section is in Header page so we can use props to give this value to the cart item.
 
 
   }, [])  
@@ -64,6 +64,7 @@ export const HomePage = ()=>{
 
 
     < Header cart={cart} />  {/* make changes in header section. after that see vite.config.js file */}
+    {/* After that, I want to make get the cart in my checkout page so we also need to send request. Instead of sending request we can write it into our app.jsx page where both pages are available and then we can sent the cart as propt so the api will loads only once . */}
 
     <div className="home-page">
       <div className="products-grid">
