@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Header } from "./Header";
 import { products } from "../../data/products";   // as we get the data from an api, we no longer needed this file.
 import axios from "axios";
+import { priceformat } from "../Functions/priceformat";
 
 
 export const HomePage = ()=>{
@@ -89,7 +90,7 @@ export const HomePage = ()=>{
           </div>
 
           <div className="product-price">
-            $ {(product.priceCents / 100).toFixed(2)}
+            { priceformat(product.priceCents) }
           </div>
 
           <div className="product-quantity-container">
