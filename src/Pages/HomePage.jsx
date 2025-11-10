@@ -4,6 +4,7 @@ import '../Pages/HomePage.css' ;
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
 import { products } from "../../data/products";
+import axios from "axios";
 
 
 export const HomePage = ()=>{
@@ -17,12 +18,19 @@ export const HomePage = ()=>{
   // })
 
 
-  fetch('http://localhost:3000/api/products')
+  // fetch('http://localhost:3000/api/products')
+  // .then((response)=>{
+  //   response.json().then((data)=>{
+  //     console.log(data)     // That's how we can get the data from an api.
+  //   })
+  // })  // This code is saying that, .then method get response from fetchApi and as it get response it gives us data of that api.
+// Fetch is still littlt bit complecated as we have to use then manytimes. SO we can use Axios to make request in cleaner way.
+// you have to install npm install axios@latest .
+
+  axios.get('http://localhost:3000/api/products')
   .then((response)=>{
-    response.json().then((data)=>{
-      console.log(data)     // That's how we can get the data from an api.
-    })
-  })  // This code is saying that, .then method get response from fetchApi and as it get response it gives us data of that api.
+    console.log(response.data);
+  })  // So it is more cleaner way to fetch data.
 
 
 
