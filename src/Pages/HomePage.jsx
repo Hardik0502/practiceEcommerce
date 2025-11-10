@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../Pages/header.css' ;
 import '../Pages/HomePage.css' ;
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
-import { products } from "../../data/products";
+import { products } from "../../data/products";   // as we get the data from an api, we no longer needed this file.
 import axios from "axios";
 
 
@@ -27,11 +27,23 @@ export const HomePage = ()=>{
 // Fetch is still littlt bit complecated as we have to use then manytimes. SO we can use Axios to make request in cleaner way.
 // you have to install npm install axios@latest .
 
-  axios.get('http://localhost:3000/api/products')
-  .then((response)=>{
-    console.log(response.data);
-  })  // So it is more cleaner way to fetch data.
+  // axios.get('http://localhost:3000/api/products')
+  // .then((response)=>{
+  //   console.log(response.data);
+  // })  // So it is more cleaner way to fetch data.
+  // You can see that every time you visit the home page, the api loads again and again but we want like it should load only once. so we can use useEffect()
 
+  const [products, setproducts] = useState([]) // we have many data so we'll store into an array.
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/products')
+    .then((response)=>{
+      setproducts(response.data);
+    })
+  }, [])  
+  
+  // Now we want to store this data somewhere. So in order to store your data the useState has been used.
+  
 
 
     return(
