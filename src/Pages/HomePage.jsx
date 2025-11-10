@@ -63,7 +63,7 @@ export const HomePage = ()=>{
         <title>Ecommerce Project</title>
 
 
-    < Header cart={cart} />  {/* make changes in header section. */}
+    < Header cart={cart} />  {/* make changes in header section. after that see vite.config.js file */}
 
     <div className="home-page">
       <div className="products-grid">
