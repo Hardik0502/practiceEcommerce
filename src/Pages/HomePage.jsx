@@ -8,6 +8,23 @@ import { products } from "../../data/products";
 
 export const HomePage = ()=>{
 
+  // We want to add backend which is premade by the simpleWebDeveloper channel.
+  // We just downloaded the zip file and pasted here. after that we copied the backend path and run the npm dev. it was in local3000 so we searched that on chrome and then added /api/products so we get http://localhost:3000/api/products 
+
+  // fetch('http://localhost:3000/api/products');  // as we know the fetch always returns a promises and the promises always let us to wait to finish the asynchronous code first.So Generally we used .then() methood with promises to get our data.
+  //   .then((response)=>{
+  //    console.log(response.json());  // It also returns a promises so we still have to use then to get the data.
+  // })
+
+
+  fetch('http://localhost:3000/api/products')
+  .then((response)=>{
+    response.json().then((data)=>{
+      console.log(data)     // That's how we can get the data from an api.
+    })
+  })  // This code is saying that, .then method get response from fetchApi and as it get response it gives us data of that api.
+
+
 
     return(
         <>
