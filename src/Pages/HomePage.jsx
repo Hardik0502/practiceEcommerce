@@ -34,15 +34,26 @@ export const HomePage = ()=>{
   // You can see that every time you visit the home page, the api loads again and again but we want like it should load only once. so we can use useEffect()
 
   const [products, setproducts] = useState([]) // we have many data so we'll store into an array.
+  const [cart, setcart] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/products')
     .then((response)=>{
       setproducts(response.data);
     })
+
+    // similarly let's do it for the carts. Note : the name after 3000 can get from the documentation of SuperSimpleDev's react course.
+      axios.get('http://localhost:3000/api/cart-items')
+      .then((response)=>{
+//      console.log(response.data); //We get the product with it's information like productId,quantity etc
+          setcart(response.data);
+      })   // carts number or section is in Header page so we can use props to give this value to the cart item.
+
+
   }, [])  
-  
   // Now we want to store this data somewhere. So in order to store your data the useState has been used.
+  
+
   
 
 
@@ -52,7 +63,7 @@ export const HomePage = ()=>{
         <title>Ecommerce Project</title>
 
 
-    < Header />
+    < Header cart={cart} />  {/* make changes in header section. */}
 
     <div className="home-page">
       <div className="products-grid">
