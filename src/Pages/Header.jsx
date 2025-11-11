@@ -8,8 +8,9 @@ import { OrdersPage } from "./OrdersPage"
 export const Header = ( { cart } )=>{
 
   let totalQuantity = 0;
-  cart.forEach((cartItem)=>{
+  cart?.forEach((cartItem)=>{
     totalQuantity += cartItem.quantity ;
+    console.log(totalQuantity);
   })
 
     return(

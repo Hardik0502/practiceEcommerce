@@ -8,7 +8,7 @@ import axios from "axios";
 import { priceformat } from "../Functions/priceformat";
 
 
-export const HomePage = ()=>{
+export const HomePage = ( {cart} )=>{
 
   // We want to add backend which is premade by the simpleWebDeveloper channel.
   // We just downloaded the zip file and pasted here. after that we copied the backend path and run the npm dev. it was in local3000 so we searched that on chrome and then added /api/products so we get http://localhost:3000/api/products 
@@ -35,10 +35,10 @@ export const HomePage = ()=>{
   // You can see that every time you visit the home page, the api loads again and again but we want like it should load only once. so we can use useEffect()
 
   const [products, setproducts] = useState([]) // we have many data so we'll store into an array.
-  const [cart, setcart] = useState([])
+  // const [cart, setcart] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/products')
+    axios.get('/api/products')
     .then((response)=>{
       setproducts(response.data);
     })
@@ -64,7 +64,7 @@ export const HomePage = ()=>{
         <title>Ecommerce Project</title>
 
 
-    < Header cart={cart} />  {/* make changes in header section. after that see vite.config.js file */}
+    {/* < Header cart={cart} />  make changes in header section. after that see vite.config.js file */}
     {/* After that, I want to make get the cart in my checkout page so we also need to send request. Instead of sending request we can write it into our app.jsx page where both pages are available and then we can sent the cart as propt so the api will loads only once . */}
 
     <div className="home-page">

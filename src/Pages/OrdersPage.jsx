@@ -19,13 +19,12 @@ export const OrdersPage = ( {cart} )=>{
   }, [])
   
 
-
     return (
         <>
 
         <title>My Orders</title>
         
-       < Header cart={cart} />
+       {/* < Header cart={cart} /> */}
 
     <div className="orders-page">
       <div className="page-title">Your Orders</div>
@@ -80,7 +79,7 @@ export const OrdersPage = ( {cart} )=>{
             </div>
 
             <div className="product-actions">
-              <a to="/tracking">
+              <a href="/tracking">
                 <button className="track-package-button button-secondary">
                   Track package
                 </button>

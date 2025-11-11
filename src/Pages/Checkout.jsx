@@ -74,7 +74,7 @@ export const Checkout = ( {cart} )=>{
 
             return <div key={cartItem.productId} className="cart-item-container">
             <div className="delivery-date">
-              Delivery date: {dayjs(mydate.estimatedDeliveryTimeMs).format('dddd , MMMM D')}
+              Delivery date: { mydate ?  dayjs(mydate.estimatedDeliveryTimeMs).format('dddd , MMMM D') : 'Loading...'}
             </div>
 
             <div className="cart-item-details-grid">

@@ -22,7 +22,7 @@ function App() {
     axios.get('/api/cart-items?expand=product')  // ?expand=product it will help to give the data in more detail way
     .then((response)=>{
       setcart(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     })
   }, [])
   
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-            
+            <Header cart={cart} />
       <Routes>
         <Route path='/' element={ < HomePage cart={cart} />} /> 
         <Route path='/checkout' element={ < Checkout cart={cart} /> } /> 
