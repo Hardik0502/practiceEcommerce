@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './checkout-header.css';
 import './checkout.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { priceformat } from "../Functions/priceformat";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -30,7 +30,15 @@ export const Checkout = ( {cart, loadproduct} )=>{
   }, [cart])   // when the cart is changed the payment updates automatically.
 
 
- 
+  // When we click the place the order button, the website should jump me to the orders page. Forthis we have a hook names useNavigate.
+
+  const bookorder = useNavigate();
+
+ const makeorder = async()=>{
+    await axios.post('/api/orders')
+    await loadproduct();
+    bookorder('/orders');
+ }  
 
 
     
@@ -190,7 +198,7 @@ export const Checkout = ( {cart, loadproduct} )=>{
               <div className="payment-summary-money">{priceformat(paymentSummary.totalCostCents)}</div>
             </div>
 
-            <button className="place-order-button button-primary">
+            <button className="place-order-button button-primary" onClick={makeorder} >
               Place your order
             </button>
 
