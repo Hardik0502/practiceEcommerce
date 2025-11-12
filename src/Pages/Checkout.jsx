@@ -51,8 +51,7 @@ export const Checkout = ( {cart, loadproduct} )=>{
         </div>
 
         <div className="checkout-header-middle-section">
-          Checkout (<Link className="return-to-home-link"
-            to="/">3 items</Link>)
+          My Products  
         </div>
 
         <div className="checkout-header-right-section">
@@ -70,6 +69,12 @@ export const Checkout = ( {cart, loadproduct} )=>{
           { cart.map((cartItem)=>{
 
             let mydate = deliveryOptions.find((deliveryOption)=> deliveryOption.id === cartItem.deliveryOptionId ) || {};
+
+
+            let deleteItem = async()=>{
+              await axios.delete(`/api/cart-items/${cartItem.productId}`)
+              await loadproduct();
+            }
 
 
             return <div key={cartItem.productId} className="cart-item-container">
@@ -95,7 +100,7 @@ export const Checkout = ( {cart, loadproduct} )=>{
                   <span className="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary">
+                  <span className="delete-quantity-link link-primary" onClick={deleteItem} >
                     Delete
                   </span>
                 </div>
