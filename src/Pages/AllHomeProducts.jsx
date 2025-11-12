@@ -15,6 +15,9 @@ export function AllHomeProducts ( {product,loadproduct } ){
         await loadproduct();
     }
 
+ 
+
+
     return (
         <>
         <div key={product.id} className="product-container">

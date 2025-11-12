@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { priceformat } from '../Functions/priceformat';
 
 
-export const OrdersPage = ( {cart} )=>{
+export const OrdersPage = ( {cart,loadproduct} )=>{
 
   const [orders, setorders] = useState([]);
 
@@ -17,6 +17,8 @@ export const OrdersPage = ( {cart} )=>{
       setorders(response.data);
     })
   }, [])
+
+  
   
 
     return (
@@ -32,6 +34,7 @@ export const OrdersPage = ( {cart} )=>{
       <div className="orders-grid">
 
         {orders.map((order)=>{
+          
           return <div key={order.id} className="order-container">
 
           <div className="order-header">
@@ -54,8 +57,17 @@ export const OrdersPage = ( {cart} )=>{
 
           <div className="order-details-grid">
 
-  {/* The one product has 3 section like productImage , productDetails and the productAction. */}
             { order.products.map((productOrder)=>{
+
+              const deleteOrder = (productId)=>{
+                setorders(orders.filter((od)=>{
+                  return od.id !== productId ;
+                }))   // It will just remove the product. after refresh the page they will back.
+              }
+
+
+              {/* The one product has 3 section like productImage , productDetails and the productAction. */}
+              
               return <Fragment key={productOrder.productId}> { /* We want to give key so we can not give it to <></> so we use this tag. */}
 
               <div className="product-image-container">
@@ -72,9 +84,9 @@ export const OrdersPage = ( {cart} )=>{
               <div className="product-quantity">
                 Quantity: {productOrder.quantity}
               </div>
-              <button className="buy-again-button button-primary">
+              <button className="buy-again-button button-primary" onClick={()=> deleteOrder(order.id)}  >
                 <img className="buy-again-icon" src="images/icons/buy-again.png" />
-                <span className="buy-again-message">Add to Cart</span>
+                <span className="buy-again-message">Cancel Order</span>
               </button>
             </div>
 
