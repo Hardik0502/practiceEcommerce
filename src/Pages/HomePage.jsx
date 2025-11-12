@@ -6,9 +6,12 @@ import { Header } from "./Header";
 import { products } from "../../data/products";   // as we get the data from an api, we no longer needed this file.
 import axios from "axios";
 import { priceformat } from "../Functions/priceformat";
+import { AllHomeProducts } from "./AllHomeProducts";
 
 
-export const HomePage = ( {cart} )=>{
+
+
+export const HomePage = ( {cart , loadproduct} )=>{
 
   // We want to add backend which is premade by the simpleWebDeveloper channel.
   // We just downloaded the zip file and pasted here. after that we copied the backend path and run the npm dev. it was in local3000 so we searched that on chrome and then added /api/products so we get http://localhost:3000/api/products 
@@ -71,56 +74,10 @@ export const HomePage = ( {cart} )=>{
       <div className="products-grid">
 
       { products.map((product)=>{
-        return <div key={product.id} className="product-container">
-          <div className="product-image-container">
-            <img className="product-image"
-              src={product.image} />
-          </div>
-
-          <div className="product-name limit-text-to-2-lines">
-            {product.name}
-          </div>
-
-          <div className="product-rating-container">
-            <img className="product-rating-stars"
-              src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
-            <div className="product-rating-count link-primary">
-              {product.rating.count}
-            </div>
-          </div>
-
-          <div className="product-price">
-            { priceformat(product.priceCents) }
-          </div>
-
-          <div className="product-quantity-container">
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <div className="product-spacer"></div>
-
-          <div className="added-to-cart">
-            <img src="images/icons/checkmark.png" />
-            Added
-          </div>
-
-          <button className="add-to-cart-button button-primary">
-            Add to Cart
-          </button>
-        </div>
+        return < AllHomeProducts key={product.id} product={product} loadproduct={loadproduct} />
       }) }
 
+      
         
 
         {/* <div className="product-container">
