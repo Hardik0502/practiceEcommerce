@@ -67,9 +67,7 @@ export const Checkout = ( {cart} )=>{
 
           { cart.map((cartItem)=>{
 
-            let mydate = deliveryOptions.find((deliveryOption)=>{
-              return deliveryOption.id === cartItem.deliveryOptionId ;
-            })
+            let mydate = deliveryOptions.find((deliveryOption)=> deliveryOption.id === cartItem.deliveryOptionId ) || {};
 
 
             return <div key={cartItem.productId} className="cart-item-container">

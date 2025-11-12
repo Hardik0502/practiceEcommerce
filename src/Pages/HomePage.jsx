@@ -64,7 +64,7 @@ export const HomePage = ( {cart} )=>{
         <title>Ecommerce Project</title>
 
 
-    {/* < Header cart={cart} />  make changes in header section. after that see vite.config.js file */}
+    < Header cart={cart} />  {/* make changes in header section. after that see vite.config.js file*/}
     {/* After that, I want to make get the cart in my checkout page so we also need to send request. Instead of sending request we can write it into our app.jsx page where both pages are available and then we can sent the cart as propt so the api will loads only once . */}
 
     <div className="home-page">

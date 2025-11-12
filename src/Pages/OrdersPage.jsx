@@ -24,7 +24,7 @@ export const OrdersPage = ( {cart} )=>{
 
         <title>My Orders</title>
         
-       {/* < Header cart={cart} /> */}
+       < Header cart={cart} />
 
     <div className="orders-page">
       <div className="page-title">Your Orders</div>

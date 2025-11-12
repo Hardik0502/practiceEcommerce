@@ -9,7 +9,7 @@ export const Tracking = ({cart})=>{
         
         <title>Tracking Order</title>
 
-      {/* < Header cart={cart} /> */}
+      < Header cart={cart} />
 
     <div className="tracking-page">
       <div className="order-tracking">

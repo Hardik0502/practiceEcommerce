@@ -19,11 +19,13 @@ function App() {
   const [cart, setcart] = useState([])
 
   useEffect(() => {  // we made changes in vite.config.js file so we don't need to write https://localhost:3000
+   
     axios.get('/api/cart-items?expand=product')  // ?expand=product it will help to give the data in more detail way
     .then((response)=>{
       setcart(response.data);
       // console.log(response.data);
     })
+    
   }, [])
   
 
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <>
-            <Header cart={cart} />
+            
       <Routes>
         <Route path='/' element={ < HomePage cart={cart} />} /> 
         <Route path='/checkout' element={ < Checkout cart={cart} /> } /> 

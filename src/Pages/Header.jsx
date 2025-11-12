@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom"
-import { Checkout } from "./Checkout"
-import { HomePage } from "./HomePage"
-import { OrdersPage } from "./OrdersPage"
+
 
 
 
 export const Header = ( { cart } )=>{
 
+  
   let totalQuantity = 0;
   cart?.forEach((cartItem)=>{
     totalQuantity += cartItem.quantity ;
-    console.log(totalQuantity);
   })
+  console.log(totalQuantity);
 
     return(
         <>
