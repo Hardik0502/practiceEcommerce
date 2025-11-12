@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 
 
 
-export const Checkout = ( {cart} )=>{
+export const Checkout = ( {cart, loadproduct} )=>{
 
   const [deliveryOptions, setdeliveryOptions] = useState([]);
   const [paymentSummary, setpaymentSummary] = useState([]);
@@ -27,8 +27,10 @@ export const Checkout = ( {cart} )=>{
       setpaymentSummary(response.data);
     })
 
-  }, [])
-  
+  }, [cart])   // when the cart is changed the payment updates automatically.
+
+
+ 
 
 
     
@@ -99,6 +101,7 @@ export const Checkout = ( {cart} )=>{
                 </div>
               </div>
 
+
               <div className="delivery-options">
                 <div className="delivery-options-title">
                   Choose a delivery option:
@@ -110,11 +113,24 @@ export const Checkout = ( {cart} )=>{
                   priceString = `${priceformat(deliveryOption.priceCents)}`
                 }
 
-                return <div key={deliveryOption.id} className="delivery-option">
+                // When we want to update something on our api or backend we use put method of axios.
+
+                const updateDeliveryOptions = async()=>{
+                  await axios.put(`/api/cart-items/${cartItem.productId}`, {
+                    deliveryOptionId : deliveryOption.id    // Here we have to refresh the page everytime so we have to use
+                  } )
+                   await loadproduct();
+                }
+                
+
+
+                return <div key={deliveryOption.id} className="delivery-option" onClick={updateDeliveryOptions} >
                   <input type="radio"
-                  defaultChecked={deliveryOption.id === cartItem.deliveryOptionId }
                     className="delivery-option-input"
-                    name={`delivery-option-${cartItem.productId}`} />
+                    name={`delivery-option-${cartItem.productId}`}
+                    checked={deliveryOption.id === cartItem.deliveryOptionId}
+                    onChange={()=> {}}
+                    />
                   <div>
                     <div className="delivery-option-date">
                       { dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D') }
